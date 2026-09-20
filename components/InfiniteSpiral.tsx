@@ -1,3 +1,6 @@
+"use client";
+
+/* eslint-disable @next/next/no-img-element -- InfiniteSpiral positions each <img> from measured card geometry, so next/image would break its layout math. */
 import { useEffect, useMemo, useRef, type CSSProperties, type PointerEvent as ReactPointerEvent } from 'react';
 
 export interface InfiniteSpiralItem {
@@ -29,6 +32,8 @@ export interface InfiniteSpiralProps {
   pauseOnHover?: boolean;
   imageFit?: CSSProperties['objectFit'];
   grayscale?: number;
+  /** Card chrome (border/background/shadow). Pass your own to opt out of the glass look. */
+  cardChrome?: string;
   className?: string;
 }
 
@@ -61,6 +66,7 @@ const InfiniteSpiral = ({
   pauseOnHover = true,
   imageFit = 'cover',
   grayscale = 0,
+  cardChrome = 'border border-white/25 bg-white/10 shadow-[0_14px_38px_rgba(8,6,18,0.2)]',
   className = ''
 }: InfiniteSpiralProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -229,7 +235,7 @@ const InfiniteSpiral = ({
   };
 
   const itemClassName =
-    'absolute left-1/2 top-1/2 block h-[var(--spiral-height)] w-[var(--spiral-width)] overflow-hidden rounded-[var(--spiral-radius)] border border-white/25 bg-white/10 shadow-[0_14px_38px_rgba(8,6,18,0.2)] [backface-visibility:hidden] [transform-style:preserve-3d] [will-change:transform,opacity,filter] motion-reduce:transition-none';
+    `absolute left-1/2 top-1/2 block h-[var(--spiral-height)] w-[var(--spiral-width)] overflow-hidden rounded-[var(--spiral-radius)] [backface-visibility:hidden] [transform-style:preserve-3d] [will-change:transform,opacity,filter] motion-reduce:transition-none ${cardChrome}`.trim();
 
   return (
     <div

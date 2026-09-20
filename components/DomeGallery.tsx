@@ -1,3 +1,6 @@
+"use client";
+
+/* eslint-disable @next/next/no-img-element -- DomeGallery measures and positions each <img> directly in the DOM, so next/image would break its layout math. */
 import { useEffect, useMemo, useRef, useCallback } from 'react';
 import { useGesture } from '@use-gesture/react';
 

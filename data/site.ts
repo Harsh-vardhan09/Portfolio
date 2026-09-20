@@ -28,7 +28,7 @@ export const hero: Hero = {
   roleLines: ["Full Stack Developer", "Systems & Tooling"],
   portrait: {
     src: "/Main.png",
-    alt: "/arora.jpg",
+    alt: "Harsh Vardhan",
   },
   scrollCue: "Scroll",
 };

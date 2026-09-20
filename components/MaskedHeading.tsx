@@ -1,3 +1,6 @@
+"use client";
+
+/* eslint-disable @next/next/no-img-element -- The media here is clipped by an SVG clipPath and driven by measured transforms, so next/image would break it. */
 import { useCallback, useEffect, useId, useMemo, useRef } from 'react';
 import type { CSSProperties, ElementType } from 'react';
 import { gsap } from 'gsap';
