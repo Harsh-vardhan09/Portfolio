@@ -87,6 +87,42 @@ const entries: Project[] = [
       "1,000+ views across LinkedIn and X",
     ],
   },
+  // TODO: replace with a real project — title, description, year, technologies.
+  {
+    title: "Untitled Project 03",
+    slug: "project-03",
+    description: "Placeholder entry. Replace this with the real project.",
+    year: 2025,
+    technologies: ["TBD"],
+    featured: true,
+  },
+  // TODO: replace with a real project — title, description, year, technologies.
+  {
+    title: "Untitled Project 04",
+    slug: "project-04",
+    description: "Placeholder entry. Replace this with the real project.",
+    year: 2025,
+    technologies: ["TBD"],
+    featured: true,
+  },
+  // TODO: replace with a real project — title, description, year, technologies.
+  {
+    title: "Untitled Project 05",
+    slug: "project-05",
+    description: "Placeholder entry. Replace this with the real project.",
+    year: 2025,
+    technologies: ["TBD"],
+    featured: true,
+  },
+  // TODO: replace with a real project — title, description, year, technologies.
+  {
+    title: "Untitled Project 06",
+    slug: "project-06",
+    description: "Placeholder entry. Replace this with the real project.",
+    year: 2025,
+    technologies: ["TBD"],
+    featured: true,
+  },
 ];
 
 /** Newest first, so callers never sort. */

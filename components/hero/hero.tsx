@@ -5,7 +5,7 @@ import { hero, nav, socials } from "@/data/site";
 import { HeroStage } from "./hero-stage";
 
 const focus =
-  "outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground";
+  "outline-none focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground";
 
 export function Hero() {
   return (
@@ -18,13 +18,14 @@ export function Hero() {
             context and leave mix-blend-difference below with nothing to blend against.
             DOM order already paints this above the stage. */}
         <div className="pointer-events-none absolute inset-0 p-6 text-foreground md:p-10">
-          <div className="pointer-events-auto absolute inset-x-6 top-6 flex items-start justify-between gap-6 md:inset-x-10 md:top-10">
-          <p className="min-w-0 truncate text-[13px] tracking-[0.02em] text-foreground/60">
+          <div className="pointer-events-auto absolute inset-x-6 top-6 flex flex-wrap items-start justify-between gap-x-6 gap-y-2 md:inset-x-10 md:top-10">
+          {/* Decorative; below sm the nav needs the whole row to avoid stacking one link per line. */}
+          <p className="hidden min-w-0 truncate text-[13px] tracking-[0.02em] text-foreground/60 sm:block">
             {hero.copyright}
           </p>
 
-          <div className="flex shrink-0 items-center gap-4 sm:gap-6">
-          <nav className="flex gap-4 text-[13px] tracking-[0.02em] sm:gap-6">
+          <div className="flex min-w-0 flex-1 items-center justify-end gap-4 sm:gap-6">
+          <nav className="flex flex-wrap justify-end gap-x-4 gap-y-1 text-[13px] tracking-[0.02em] sm:gap-x-6">
             {nav.map((link) => (
               <a
                 key={link.href}

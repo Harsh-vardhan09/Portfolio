@@ -1,24 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { useMedia } from "@/lib/use-media";
 import MaskedHeading from "@/components/MaskedHeading";
 import type { Hero } from "@/data/site";
 
 const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
-
-function useMedia(query: string, initial: boolean) {
-  const [matches, setMatches] = useState(initial);
-  useEffect(() => {
-    const mq = window.matchMedia(query);
-    const read = () => setMatches(mq.matches);
-    read();
-    mq.addEventListener("change", read);
-    return () => mq.removeEventListener("change", read);
-  }, [query]);
-  return matches;
-}
 
 /** Portrait + masked name. Client-only: the entrance timeline and MaskedHeading both need the DOM. */
 export function HeroStage({ hero }: { hero: Hero }) {
@@ -69,7 +58,7 @@ export function HeroStage({ hero }: { hero: Hero }) {
         <MaskedHeading
           tag="h1"
           text={hero.name}
-          src={hero.portrait.src}
+          src={"/arora.jpg"}
           mediaType="image"
           nowrap={!narrow}
           align="center"

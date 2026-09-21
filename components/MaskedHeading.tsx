@@ -1,7 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element -- The media here is clipped by an SVG clipPath and driven by measured transforms, so next/image would break it. */
-import { useCallback, useEffect, useId, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef } from 'react';
 import type { CSSProperties, ElementType } from 'react';
 import { gsap } from 'gsap';
 
@@ -91,17 +91,12 @@ const MaskedHeading: React.FC<MaskedHeadingProps> = ({
     grayscale: boolean;
     textScale: number;
     maxFontSize: number;
-  }>({
-    fillScale: 1,
-    parallax: 0,
-    drift: 0,
-    brightness: 1,
-    saturation: 1,
-    grayscale: false,
-    textScale: 0.115,
-    maxFontSize: 200
-  });
-  settingsRef.current = { fillScale, parallax, drift, brightness, saturation, grayscale, textScale, maxFontSize };
+  }>({ fillScale, parallax, drift, brightness, saturation, grayscale, textScale, maxFontSize });
+  // Layout effect, not a render-time assignment: every consumer (place, sync, the
+  // rAF loop, the ResizeObserver) runs in an effect or later, so they all see this.
+  useLayoutEffect(() => {
+    settingsRef.current = { fillScale, parallax, drift, brightness, saturation, grayscale, textScale, maxFontSize };
+  }, [fillScale, parallax, drift, brightness, saturation, grayscale, textScale, maxFontSize]);
 
   const place = useCallback(() => {
     const root = rootRef.current;

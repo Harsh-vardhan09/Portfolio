@@ -16,7 +16,9 @@ export function ExperienceSection({
     <section id="experience" className="scroll-mt-24 py-32 md:py-48">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
         <SectionIndex>02 / Experience</SectionIndex>
-        <div className="mt-12">
+        {/* overflow-x-clip, not hidden: fillScale pushes the media past the
+            heading box horizontally, but tight leading needs vertical overflow. */}
+        <div className="mt-12 overflow-x-clip">
           {heading === "masked" ? (
             <ExperienceHeading text="EXPERIENCE" />
           ) : (

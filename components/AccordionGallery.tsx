@@ -1,3 +1,6 @@
+"use client";
+
+/* eslint-disable @next/next/no-img-element -- AccordionGallery sizes and transforms each <img> from measured panel geometry, so next/image would break its layout math. */
 import { useRef, useEffect, useState, useCallback, CSSProperties, KeyboardEvent, MouseEvent } from 'react';
 import { gsap } from 'gsap';
 
