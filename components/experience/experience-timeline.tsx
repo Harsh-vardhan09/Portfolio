@@ -4,7 +4,13 @@ import { useLayoutEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap"; // importing this module registers ScrollTrigger
 import type { Experience } from "@/data/experience";
 
-const dateRange = (e: Experience) => `${e.startDate} – ${e.endDate ?? "Present"}`;
+/** Year-only entries carry no endDate and are not current, so show a single date. */
+const dateRange = (e: Experience) =>
+  e.current
+    ? `${e.startDate} – Present`
+    : e.endDate
+      ? `${e.startDate} – ${e.endDate}`
+      : e.startDate;
 
 export function ExperienceTimeline({ entries }: { entries: Experience[] }) {
   const root = useRef<HTMLDivElement>(null);

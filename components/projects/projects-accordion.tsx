@@ -26,7 +26,6 @@ export function ProjectsAccordion({ projects }: { projects: Project[] }) {
       accentColor="var(--foreground)"
       overlayColor="#0D0D0D"
       textColor="#FFFFFF"
-      grayscale
       showLabels
       duration={0.6}
       ease="power4.out"

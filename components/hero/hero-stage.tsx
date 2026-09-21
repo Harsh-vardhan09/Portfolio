@@ -58,7 +58,7 @@ export function HeroStage({ hero }: { hero: Hero }) {
         <MaskedHeading
           tag="h1"
           text={hero.name}
-          src={"/arora.jpg"}
+          src={"/assets/arora.jpg"}
           mediaType="image"
           nowrap={!narrow}
           align="center"

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getProject, projects } from "@/data/projects";
+import { readImageSize, resolveProjectImage } from "@/lib/project-image";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -24,6 +26,11 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
   const project = getProject(slug);
   if (!project) notFound();
 
+  // Null when the project has no image or the file is absent, so the section
+  // simply does not render rather than showing a broken frame.
+  const image = resolveProjectImage(project.image);
+  const size = image ? readImageSize(image) : null;
+
   const stats = [
     project.contributors && { label: "Contributors", value: `${project.contributors}+` },
     project.users && { label: "Users", value: `${project.users}+` },
@@ -45,6 +52,33 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
         <p className="mt-6 max-w-[62ch] text-lg leading-relaxed text-foreground/70">
           {project.description}
         </p>
+
+        {image && (
+          <figure className="mt-16 overflow-hidden rounded-sm border border-border bg-foreground/5">
+            {size ? (
+              <Image
+                src={image}
+                alt={`${project.title} screenshot`}
+                width={size.width}
+                height={size.height}
+                sizes="(min-width: 1024px) 1024px, 100vw"
+                preload
+                className="h-auto w-full"
+              />
+            ) : (
+              <div className="relative aspect-video">
+                <Image
+                  src={image}
+                  alt={`${project.title} screenshot`}
+                  fill
+                  sizes="(min-width: 1024px) 1024px, 100vw"
+                  preload
+                  className="object-contain"
+                />
+              </div>
+            )}
+          </figure>
+        )}
 
         {project.overview && (
           <section className="mt-20">

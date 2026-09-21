@@ -23,24 +23,31 @@ export function ContactForm({ mailto }: { mailto: string }) {
 
   const configured = Boolean(SERVICE_ID && TEMPLATE_ID && PUBLIC_KEY);
 
-  // Without keys the form would fail silently, so fall back to the mail client.
-  if (!configured) {
-    return (
-      <p className="mt-12 max-w-[62ch] text-base text-foreground/70">
-        <a href={mailto} className={`underline underline-offset-4 ${focusRing}`}>
-          {mailto.replace("mailto:", "")}
-        </a>
-        <span className="mt-2 block text-[13px] text-foreground/45">
-          Set NEXT_PUBLIC_EMAILJS_SERVICE_ID, _TEMPLATE_ID and _PUBLIC_KEY to enable
-          the form.
-        </span>
-      </p>
-    );
+  /** Hand the message to the user's mail client — used when EmailJS has no keys. */
+  function openMailClient(data: FormData) {
+    const name = String(data.get("from_name") ?? "");
+    const from = String(data.get("reply_to") ?? "");
+    const body = `${String(data.get("message") ?? "")}
+
+— ${name} (${from})`;
+    // A real link click, not a location assignment: mailto: is an external
+    // handler, and this keeps the Next.js navigation lint rule satisfied.
+    const link = document.createElement("a");
+    link.href = `${mailto}?subject=${encodeURIComponent(
+      `Portfolio enquiry from ${name}`
+    )}&body=${encodeURIComponent(body)}`;
+    link.click();
   }
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!form.current) return;
+
+    if (!configured) {
+      openMailClient(new FormData(form.current));
+      return;
+    }
+
     setStatus("sending");
     try {
       await emailjs.sendForm(SERVICE_ID!, TEMPLATE_ID!, form.current, {

@@ -55,4 +55,38 @@ export const experience: Experience[] = [
     ],
     technologies: ["C#", "ASP.NET", ".NET", "Blazor", "REST APIs"],
   },
+  {
+    // TODO: add the month range once known — a single year renders on its own.
+    company: "OSCI '26",
+    role: "Project Admin",
+    startDate: "2026",
+    description: [
+      "Project admin for an open source project in Open Source Connect India 2026.",
+      "Reviewed and triaged incoming contributions from participants.",
+      "Scoped and labelled issues so contributors could pick up work independently.",
+    ],
+    technologies: ["Git", "GitHub", "Open Source"],
+  },
+  {
+    // TODO: add the month range once known.
+    company: "GirlScript Summer of Code (GSSoC) '26",
+    role: "Open Source Contributor",
+    startDate: "2026",
+    description: [
+      "Contributed to multiple open source projects across the programme.",
+      "15+ pull requests merged.",
+    ],
+    technologies: ["Git", "GitHub", "Open Source"],
+  },
+  {
+    company: "Personal Open Source Projects",
+    role: "Maintainer",
+    startDate: "2025",
+    description: [
+      "Maintain personal projects that have drawn outside contributors.",
+      "AthLead grew to 15+ contributors and 100+ users.",
+      "Reviewed pull requests and kept issues scoped for new contributors.",
+    ],
+    technologies: ["Git", "GitHub", "Open Source"],
+  },
 ];
