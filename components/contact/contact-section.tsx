@@ -10,7 +10,7 @@ export function ContactSection() {
   return (
     <section id="contact" className="scroll-mt-24 pt-32 md:pt-48">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
-        <h2 className="max-w-[14ch] font-medium leading-[0.95] tracking-[-0.035em] text-[clamp(3rem,10vw,9rem)]">
+        <h2 className="max-w-[18ch] font-medium leading-[0.95] tracking-[-0.035em] text-[clamp(2.5rem,7vw,6rem)]">
           Let&rsquo;s build something.
         </h2>
 

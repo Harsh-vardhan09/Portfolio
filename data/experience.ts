@@ -19,7 +19,7 @@ export const experience: Experience[] = [
     company: "Vyor AI",
     role: "Full Stack Developer Intern",
     startDate: "May 2026",
-    current: true,
+    endDate: "August 2026",
     description: [
       "Architected and scaffolded a CRM platform.",
       "Built secure REST APIs.",
