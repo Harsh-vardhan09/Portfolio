@@ -65,7 +65,13 @@ export function HeroStage({ hero }: { hero: Hero }) {
           weight={500}
           tracking={-0.04}
           lineHeight={0.82}
-          textScale={narrow ? 0.185 : 0.0935}
+          // 0.185 rendered "VARDHAN" at 406px in a 361px viewport; this keeps the
+          // longest line inside ~92% of the width at every phone size.
+          // The head is 335px of opaque pixels dead centre. Solving "VARDHAN clears
+          // the head" against "the line still fits" gives a minimum gap of ~3.9em,
+          // and that in turn caps the size — this is the largest type that works.
+          textScale={narrow ? 0.185 : 0.083}
+          wordSpacing={narrow ? "normal" : "4.05em"}
           maxFontSize={320}
           mediaOpacity={0.35}
           fillScale={3.2}

@@ -33,6 +33,8 @@ export interface MaskedHeadingProps {
   textScale?: number;
   maxFontSize?: number;
   nowrap?: boolean;
+  /** Gap between words, e.g. '3.4em'. Lets a centred subject sit between them. */
+  wordSpacing?: string;
   fillColor?: string;
   mediaOpacity?: number;
   className?: string;
@@ -63,6 +65,7 @@ const MaskedHeading: React.FC<MaskedHeadingProps> = ({
   textScale = 0.115,
   maxFontSize = 200,
   nowrap = false,
+  wordSpacing = 'normal',
   fillColor = '',
   mediaOpacity = 1,
   className = '',
@@ -307,6 +310,7 @@ const MaskedHeading: React.FC<MaskedHeadingProps> = ({
       className={`relative w-full m-0 p-0 antialiased ${nowrap ? 'whitespace-nowrap' : '[text-wrap:balance]'} ${className}`.trim()}
       style={{
         textAlign: align,
+        wordSpacing,
         fontWeight: weight,
         letterSpacing: `${tracking}em`,
         lineHeight,
@@ -321,9 +325,14 @@ const MaskedHeading: React.FC<MaskedHeadingProps> = ({
             ref={(el: HTMLSpanElement | null) => {
               wordRefs.current[i] = el;
             }}
-            className="inline-block whitespace-pre [&:not(:last-child)]:after:content-['\\00a0']"
+            className="inline-block whitespace-pre"
           >
             {word}
+            {/* Real non-breaking space. The previous CSS ::after escape
+                reached the stylesheet as an escaped backslash and rendered as
+                five literal characters, inflating the word box and breaking
+                the centring of wrapped lines. */}
+            {i < words.length - 1 ? ' ' : ''}
             <i
               ref={(el: HTMLElement | null) => {
                 baseRefs.current[i] = el;

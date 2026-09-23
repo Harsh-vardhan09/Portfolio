@@ -26,6 +26,8 @@ export interface DepthCarouselProps {
   /** 'horizontal' lets vertical wheel scroll pass through to the page. */
   wheelAxis?: 'both' | 'horizontal';
   cardSurface?: string;
+  /** Slack reserved around the fan when auto-scaling. Lower it to let the card fill more. */
+  fitPadding?: number;
   depth?: number;
   spread?: number;
   tilt?: number;
@@ -92,6 +94,7 @@ const DepthCarousel = ({
   imageFit = 'cover',
   wheelAxis = 'both',
   cardSurface = 'bg-[#0b0d12]',
+  fitPadding = 120,
   depth = 220,
   spread = 90,
   tilt = 22,
@@ -256,13 +259,13 @@ const DepthCarousel = ({
     const ro = new ResizeObserver(entries => {
       const w = entries[0].contentRect.width;
       const cfg = cfgRef.current;
-      const needed = cfg.cardWidth + Math.abs(cfg.spread) * 2 + 120;
+      const needed = cfg.cardWidth + Math.abs(cfg.spread) * 2 + fitPadding;
       scaleRef.current = clamp(w / needed, 0.4, 1);
       layout(posRef.current);
     });
     ro.observe(root);
     return () => ro.disconnect();
-  }, [layout]);
+  }, [layout, fitPadding]);
 
   useEffect(() => {
     const el = rootRef.current;

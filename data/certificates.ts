@@ -26,6 +26,12 @@ export type Certificate = {
 
 export const certificates: Certificate[] = [
   {
+    title: "Summer Internship",
+    issuer: "GAIL (India) Limited",
+    date: "August 2026",
+    image: "/certificates/gail-summer-training.jpg",
+  },
+  {
     title: "AWS Certified AI Practitioner",
     issuer: "Amazon Web Services",
     date: "May 2026",
@@ -66,11 +72,5 @@ export const certificates: Certificate[] = [
     // TODO: the certificate carries no date; add it if you have one.
     date: "",
     image: "/certificates/techsprint-runner-up.jpg",
-  },
-  {
-    title: "Summer Internship",
-    issuer: "GAIL (India) Limited",
-    date: "August 2026",
-    image: "/certificates/gail-summer-training.jpg",
   },
 ];

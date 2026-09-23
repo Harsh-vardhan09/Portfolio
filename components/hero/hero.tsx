@@ -25,7 +25,7 @@ export function Hero() {
           </p>
 
           <div className="flex min-w-0 flex-1 items-center justify-end gap-4 sm:gap-6">
-          <nav className="flex flex-wrap justify-end gap-x-4 gap-y-1 text-[13px] tracking-[0.02em] sm:gap-x-6">
+          <nav className="flex flex-1 flex-wrap justify-center gap-x-2.5 gap-y-1 text-[12px] tracking-[0.02em] sm:justify-end sm:gap-x-6 sm:text-[13px]">
             {nav.map((link) => (
               <a
                 key={link.href}
@@ -43,7 +43,9 @@ export function Hero() {
 
           {/* Below the name, split to either side of the centred portrait.
               Stacks on mobile, where the two would collide. */}
-          <div className="absolute inset-x-6 top-[60%] flex flex-col gap-1 font-medium leading-[1.05] tracking-[-0.035em] text-[clamp(1.25rem,3vw,2.5rem)] text-white mix-blend-difference md:inset-x-10 md:flex-row md:justify-between">
+          {/* On phones the portrait starts at 30% of the hero, so the role sits
+              above it rather than across the face; from md it flanks it again. */}
+          <div className="absolute inset-x-6 top-[20%] flex flex-col items-center gap-1 text-center font-medium leading-[1.05] tracking-[-0.035em] text-[clamp(1.25rem,3vw,2.5rem)] text-white mix-blend-difference md:inset-x-10 md:top-[60%] md:flex-row md:items-baseline md:justify-between md:text-left">
             <p>{hero.roleLines[0]}</p>
             <p className="md:text-right">{hero.roleLines[1]}</p>
           </div>
