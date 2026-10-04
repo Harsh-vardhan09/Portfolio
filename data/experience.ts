@@ -84,7 +84,7 @@ export const experience: Experience[] = [
     startDate: "2025",
     description: [
       "Maintain personal projects that have drawn outside contributors.",
-      "AthLead grew to 15+ contributors and 100+ users.",
+      "AthLead grew to 30+ contributors and 100+ users.",
       "Reviewed pull requests and kept issues scoped for new contributors.",
     ],
     technologies: ["Git", "GitHub", "Open Source"],
