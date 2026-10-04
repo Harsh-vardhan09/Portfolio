@@ -35,7 +35,7 @@ export const certificates: Certificate[] = [
     title: "Full Stack Internship",
     issuer: "Vyor-AI",
     date: "August 2026",
-    image: "/certificates/vyor-ai.jpeg",
+    image: "/certificates/Vyor-ai.jpeg",
   },
   {
     title: "AWS Certified AI Practitioner",
