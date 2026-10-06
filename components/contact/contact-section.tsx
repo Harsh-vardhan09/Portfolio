@@ -11,7 +11,7 @@ export function ContactSection() {
     <section id="contact" className="scroll-mt-24 pt-32 md:pt-48">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
         <h2 className="max-w-[18ch] font-medium leading-[0.95] tracking-[-0.035em] text-[clamp(2.5rem,7vw,6rem)]">
-          Let&rsquo;s build something.
+          Let&rsquo;s Connect.
         </h2>
 
         {mail && <ContactForm mailto={mail.href} />}
